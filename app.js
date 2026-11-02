@@ -1,0 +1,12 @@
+import express from 'express';
+import requestLogger from './middleware/requestLogger.js';
+import notFound from './middleware/notFound.js';
+import errorHandler from './middleware/errorHandler.js';
+import gamesRouter from './routes/games.js';
+const app = express();
+app.use(express.json());
+app.use(requestLogger);
+app.use('/api/items', gamesRouter);
+app.use(notFound);
+app.use(errorHandler);
+export default app;
